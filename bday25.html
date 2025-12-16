@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Birthday Surprise 🎉</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 1s ease;
+      color: #fff;
+    }
+
+    /* PINK BACKGROUND (LOGIN) */
+    body.pink {
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    }
+
+    /* MATCHA GREEN BACKGROUND (BIRTHDAY) */
+    body.green {
+      background: linear-gradient(135deg, #a8c686, #d9ead3);
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.18);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      text-align: center;
+      width: 90%;
+      max-width: 1000px;
+      backdrop-filter: blur(6px);
+    }
+
+    .birthday {
+      display: none;
+    }
+
+    .birthday-content {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .emoji {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      animation: bounce 1.5s infinite;
+    }
+
+    p {
+      margin-top: 0;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: none;
+      margin-top: 10px;
+      outline: none;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 12px;
+      width: 100%;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #ffffff;
+      color: #555;
+      font-weight: bold;
+    }
+
+    .error {
+      margin-top: 10px;
+      display: none;
+      color: #ffecec;
+    }
+
+    /* GIF STYLING */
+    .gif-wrapper {
+      position: relative;
+      width: 250px;
+    }
+
+    .gif-wrapper img {
+      width: 100%;
+      border-radius: 15px;
+    }
+
+    /* NUMBER 5 OVERLAY — aligned beside 2 */
+    .age {
+      position: absolute;
+      top: 150px;
+      right: 70px;
+      font-size: 3.8rem;
+      font-weight: bold;
+      color: #ff0000;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+  </style>
+</head>
+
+<body class="pink">
+
+  <!-- PASSWORD SCREEN -->
+  <div class="container" id="login">
+    <h1>🔒 Enter Password</h1>
+    <p>ano nga ulit yung sinabi ko kay Andrea sa Tennessee?</p>
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="checkPassword()">Enter</button>
+    <div class="error" id="error">Incorrect password. Try again.</div>
+  </div>
+
+  <!-- BIRTHDAY SCREEN -->
+  <div class="container birthday" id="birthday">
+    <div class="birthday-content">
+
+      <!-- TEXT -->
+      <div>
+        <div class="emoji">🎂🎉</div>
+        <h1>Happy Birthday Riseeel!</h1>
+        <p>
+          Smack those candles and have the<br>
+          happiest birthday ever 💖 Hope you like my gift and enjoy building Mayo 2.0 🎻!
+        </p>
+      </div>
+
+      <!-- GIF -->
+      <div class="gif-wrapper">
+        <img
+          src="https://media1.tenor.com/m/nzU22ENAQN0AAAAd/smack-those-candles-nancy-and-have-a-happy-birthday.gif"
+          alt="Birthday GIF"
+        >
+        <div class="age">5</div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const input = document.getElementById("password").value;
+      const error = document.getElementById("error");
+
+      if (input === "whatsyourbangs") {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("birthday").style.display = "block";
+        document.body.classList.remove("pink");
+        document.body.classList.add("green");
+      } else {
+        error.style.display = "block";
+      }
+    }
+
+    document.getElementById("password").addEventListener("keyup", function(e) {
+      if (e.key === "Enter") {
+        checkPassword();
+      }
+    });
+  </script>
+
+</body>
+</html>
